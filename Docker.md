@@ -8,6 +8,13 @@
 
 * 安全性：環境隔離，e.g 網路服務如果被入侵，container 就可以當作外部多出來的一層保護
 
+
+
+## 特性
+
+* One process in one container
+* Data in the container would not be preserved：container 資料會在隨著停止運作而消失；若需要儲存，要透過第3方，如 [Volumes Component](https://kubernetes.io/docs/concepts/storage/volumes/) 的服務。
+
 ## 平台需求（適用於此筆記）
 
 Linux 系統 or 在 https://labs.play-with-docker.com/ 試用
@@ -21,7 +28,8 @@ sudo apt-get install docker.io -y
 # or curl -L get.doce  -> Adding group `docker'
 
 sudo groupadd docker
-sudo adduser userName group
+# sudo adduser <userName> <group> or sudo usermod -G <group> <userName>
+sudo adduser anntsai docker
 ```
 
 
@@ -83,6 +91,9 @@ docker rmi _withTag/ID_[-f] # remove images
 # log
 docker logs <container>
 
+# tag
+docker tag <container name/id> <account>/<reponame>:<version>
+
 # rename
 docker rename <old_container_name> <new_name>
 
@@ -107,12 +118,15 @@ docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix ubuntu-16.04
 FROM <base_image>:<ver>
 # 讓 port 可以從 Docker 容器外部存取
 [EXPOSE <internal_port>]
-# 設定工作目錄
+# 設定（建立）工作目錄
 [WORKDIR /dir]
 # 複製目前目錄下的內容，放進 Docker 容器中的 ...目錄
 [ADD . /dir]
 # 定義環境變數
 [ENV NAME World]
+# 紀錄 maintainer 資訊
+[MAINTAINER maintainer_name <mail_info>]
+[ENTRYPOINT ["point"]]
 RUN <commands_in_termainl>
 [LABEL <key>=<value>] # e.g. maintainer="moby-dock@example.com"
 # 當 Docker 容器啟動時，自動執行 ...
