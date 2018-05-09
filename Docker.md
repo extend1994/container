@@ -2,18 +2,19 @@
 
 ## Docker 是什麼？
 
-在作業系統層，做虛擬化的動作（container不太算是虛擬化？）像是一個獨立開來的環境，對作業系統上的資源做切割然後利用，類似虛擬機，但是 containers 共用 kernel ，沒有自己的作業系統；虛擬機則有，並由 hypervisor來監督，兩者開機時間差很多。
+container，在作業系統層，做虛擬化的動作像是一個獨立開來的環境，對作業系統上的資源做切割然後利用，<br>
+類似虛擬機，但是 containers 共用 kernel ，沒有自己的作業系統；<br>
+虛擬機則有，並由 hypervisor 來監督，兩者開機時間差很多。
 
 ## 需求性
 
 * 安全性：環境隔離，e.g 網路服務如果被入侵，container 就可以當作外部多出來的一層保護
 
-
-
 ## 特性
 
 * One process in one container
-* Data in the container would not be preserved：container 資料會在隨著停止運作而消失；若需要儲存，要透過第3方，如 [Volumes Component](https://kubernetes.io/docs/concepts/storage/volumes/) 的服務。
+* Data in the container would not be preserved：container 資料會在隨著停止運作而消失；<br>
+若需要儲存，要透過第3方，如 [Volumes Component](https://kubernetes.io/docs/concepts/storage/volumes/) 的服務。
 
 ## 平台需求（適用於此筆記）
 
@@ -31,8 +32,6 @@ sudo groupadd docker
 # sudo adduser <userName> <group> or sudo usermod -G <group> <userName>
 sudo adduser anntsai docker
 ```
-
-
 
 ## 指令
 
@@ -131,10 +130,7 @@ RUN <commands_in_termainl>
 [LABEL <key>=<value>] # e.g. maintainer="moby-dock@example.com"
 # 當 Docker 容器啟動時，自動執行 ...
 CMD ["bash"]   
-
 ```
-
-
 
 ## Reference
 
