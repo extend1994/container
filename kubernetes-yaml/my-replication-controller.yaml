@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: my-replication-controller
+spec:
+  replicas: 2
+  selector:
+    app: alpine-pod
+  template:
+    metadata:
+      labels:
+        app: alpine-pod
+        version: v16.04
+    spec:
+      containers:
+      - name: alpine
+        image: alpine
+        ports:
+        - containerPort: 3000
