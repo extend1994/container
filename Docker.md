@@ -2,8 +2,8 @@
 
 ## Docker 是什麼？
 
-container，在作業系統層，做虛擬化的動作像是一個獨立開來的環境，對作業系統上的資源做切割然後利用，<br>
-類似虛擬機，但是 containers 共用 kernel ，沒有自己的作業系統；<br>
+container，在作業系統層，做虛擬化的動作像是一個獨立開來的環境，對作業系統上的資源做切割然後利用，  
+類似虛擬機，但是 containers 共用 kernel ，沒有自己的作業系統；  
 虛擬機則有，並由 hypervisor 來監督，兩者開機時間差很多。
 
 ## 需求性
@@ -13,7 +13,7 @@ container，在作業系統層，做虛擬化的動作像是一個獨立開來�
 ## 特性
 
 * One process in one container
-* Data in the container would not be preserved：container 資料會在隨著停止運作而消失；<br>
+* Data in the container would not be preserved：container 資料會在隨著停止運作而消失；  
 若需要儲存，要透過第3方，如 [Volumes Component](https://kubernetes.io/docs/concepts/storage/volumes/) 的服務。
 
 ## 平台需求（適用於此筆記）
@@ -35,18 +35,28 @@ sudo adduser anntsai docker
 
 ## 指令
 
-```shell
-#### docker  system ####
+### Docker System
+
+```sh
 docker info
 docker version
 docker --version
 docker stats
+```
 
-#### container & images ####
-docker run <container_name/id>
+### Container
+
+```sh
 docker ps [-a]
-docker images 
-docker inspect
+docker rm <container ID/name>
+```
+
+### Image
+
+```shell
+docker run <container_name/id> # run a container based on a image
+docker images [-a]
+docker inspect 
 docker start
 docker restart
 docker stop <container name/id>
@@ -54,8 +64,8 @@ docker kill <container> # when no response
 docker pause
 docker unpause
 
-# online: docker pull <what_you_want>:<ver>
-docker pull ubuntu:16.04 # 拉線上的 image
+# online: docker pull <image_name>:<tag>
+docker pull ubuntu:16.04
 
 # offline: search images
 docker search [--filter "is-official=true"] ubuntu
